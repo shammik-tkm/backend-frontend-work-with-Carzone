@@ -1,0 +1,39 @@
+{% load static %}
+<header class="fixed top-0 inset-x-0 z-50 bg-[#08090c]/95 backdrop-blur-md border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[72px] flex items-center justify-between gap-3">
+        
+        <a href="{% url 'index' %}" class="flex items-center shrink-0" aria-label="CARZONA Startseite">
+            <div class="leading-none">
+                <div class="text-xl sm:text-2xl font-black italic tracking-wider">
+                    <span class="text-brand-orange">CAR</span><span class="text-white">ZONA</span>
+                </div>
+                <div class="text-[8px] sm:text-[9px] uppercase font-bold tracking-[0.15em] text-slate-400 mt-0.5">
+                    Lack & Smart Repair
+                </div>
+            </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav id="desktopNav" class="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-bold">
+            <a href="{% url 'index' %}#leistungen" class="nav-link hover:text-brand-orange">Leistungen</a>
+            <a href="{% url 'index' %}#vorher-nachher" class="nav-link hover:text-brand-orange">Vorher / Nachher</a>
+            <a href="{% url 'index' %}#ablauf" class="nav-link hover:text-brand-orange">Ablauf</a>
+            <a href="{% url 'index' %}#faq" class="nav-link hover:text-brand-orange">FAQ</a>
+            <a href="{% url 'gallery' %}" class="nav-link hover:text-brand-orange">Galerie</a>
+            <a href="{% url 'index' %}#bewertungen" class="nav-link hover:text-brand-orange">Bewertungen</a>
+            <a href="{% url 'index' %}#kontakt" class="nav-link hover:text-brand-orange">Kontakt</a>
+        </nav>
+
+        <div class="flex items-center gap-2 shrink-0">
+            <a href="https://wa.me/491729039100?text=Hallo%20CARZONA%2C%20ich%20habe%20eine%20Anfrage%20zu%20einer%20Reparatur."
+                target="_blank" rel="noopener noreferrer"
+                class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-full border-2 border-brand-orange font-bold text-sm hover:bg-brand-orange transition">
+                WhatsApp
+            </a>
+
+            <button id="menuToggle" class="lg:hidden w-11 h-11 rounded-xl border border-brand-border bg-[#12141c] flex items-center justify-center text-white hover:border-brand-orange hover:text-brand-orange transition" aria-label="Menü öffnen" aria-expanded="false">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+        </div>
+    </div>
+</header>

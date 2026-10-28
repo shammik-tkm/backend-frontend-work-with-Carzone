@@ -1,0 +1,64 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block title %}CARZONA – Vorher / Nachher Galerie | Neuss{% endblock %}
+
+{% block content %}
+<main class="pt-28 pb-20">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
+        <p class="text-brand-orange font-extrabold uppercase tracking-[.2em] text-xs mb-3">Ergebnisse unserer Werkstatt</p>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-black italic uppercase mb-4">
+            Vorher / Nachher <span class="text-brand-orange">Galerie</span>
+        </h1>
+    </section>
+
+    <!-- DYNAMIC FILTER TABS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-3" id="galleryFilters">
+            <button onclick="filterCategory('all', this)" class="filter-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold border border-brand-orange bg-brand-orange text-white transition">
+                Alle Arbeiten
+            </button>
+            {% for cat in categories %}
+            <button onclick="filterCategory('{{ cat.slug }}', this)" class="filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold border border-brand-border bg-brand-card hover:border-brand-orange text-slate-300 transition">
+                {{ cat.name }}
+            </button>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- DYNAMIC GALLERY GRID -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="galleryGrid">
+            {% for item in gallery_items %}
+            <div class="gallery-card bg-brand-card rounded-2xl border border-brand-border overflow-hidden transition duration-300 hover:border-brand-orange/50" data-category="{{ item.category.slug }}">
+                <div class="relative aspect-[4/3] w-full overflow-hidden select-none before-after-container">
+                    <img src="{{ item.image_after.url }}" alt="{{ item.title }} Nachher" class="absolute inset-0 w-full h-full object-cover" />
+                    <span class="absolute top-3 right-3 z-10 bg-black/70 text-white text-[10px] font-bold px-2.5 py-1 rounded backdrop-blur-sm">NACHHER</span>
+
+                    <div class="before-image absolute inset-y-0 left-0 overflow-hidden w-1/2 z-10">
+                        <img src="{{ item.image_before.url }}" alt="{{ item.title }} Vorher" class="absolute inset-0 w-full h-full object-cover max-w-none w-full-container" />
+                        <span class="absolute top-3 left-3 z-10 bg-brand-orange text-white text-[10px] font-black px-2.5 py-1 rounded">VORHER</span>
+                    </div>
+
+                    <input type="range" min="0" max="100" value="50" class="slider-input absolute inset-0 w-full h-full opacity-0 z-30 cursor-ew-resize" oninput="moveSlider(this)" />
+                    <div class="slider-line absolute top-0 bottom-0 left-1/2 w-0.5 bg-brand-orange z-20 pointer-events-none -translate-x-1/2">
+                        <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 bg-brand-orange rounded-full flex items-center justify-center shadow-lg text-black font-bold text-xs">&#10094;&#10095;</div>
+                    </div>
+                </div>
+                <div class="p-5 bg-brand-card">
+                    <span class="text-brand-orange text-xs font-black uppercase tracking-wider block mb-1">{{ item.badge_text }}</span>
+                    <h3 class="font-bold text-white text-base">{{ item.title }}</h3>
+                    {% if item.description %}
+                    <p class="text-brand-muted text-xs mt-1">{{ item.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center text-brand-muted py-10">
+                Записи в галерее пока отсутствуют.
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

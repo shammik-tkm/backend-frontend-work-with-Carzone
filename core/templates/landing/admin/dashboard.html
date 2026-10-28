@@ -1,0 +1,62 @@
+{% extends 'landing/includes/base.html' %}
+{% block title %}Dashboard | CARZONA Admin{% endblock %}
+
+{% block content %}
+<main class="pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-black italic uppercase">Galerie <span class="text-brand-orange">Verwaltung</span></h1>
+            <p class="text-brand-muted text-sm">Übersicht aller Vorher / Nachher Arbeiten</p>
+        </div>
+        <div class="flex gap-4">
+            <a href="{% url 'custom_admin_add' %}" class="px-5 py-2.5 bg-brand-orange font-bold text-sm text-white rounded-xl hover:bg-brand-orangeHover transition">
+                + Neue Arbeit hinzufügen
+            </a>
+            <a href="{% url 'admin_logout' %}" class="px-5 py-2.5 border border-brand-border bg-brand-card font-bold text-sm text-slate-300 rounded-xl hover:border-brand-orange transition">
+                Abmelden
+            </a>
+        </div>
+    </div>
+
+    <div class="bg-brand-card border border-brand-border rounded-2xl overflow-hidden shadow-xl">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="border-b border-brand-border text-xs text-brand-muted uppercase bg-[#08090c]">
+                    <th class="p-4">Fotos (Vorher / Nachher)</th>
+                    <th class="p-4">Bezeichnung</th>
+                    <th class="p-4">Kategorie</th>
+                    <th class="p-4">Status</th>
+                    <th class="p-4 text-right">Aktionen</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-brand-border text-sm">
+                {% for item in items %}
+                <tr class="hover:bg-white/5 transition duration-150">
+                    <td class="p-4 flex gap-2">
+                        <img src="{{ item.image_before.url }}" alt="Vorher" class="w-12 h-12 object-cover rounded-lg border border-brand-border">
+                        <img src="{{ item.image_after.url }}" alt="Nachher" class="w-12 h-12 object-cover rounded-lg border border-brand-orange">
+                    </td>
+                    <td class="p-4 font-bold text-white">{{ item.title }}</td>
+                    <td class="p-4 text-brand-orange font-semibold">{{ item.category.name }}</td>
+                    <td class="p-4">
+                        {% if item.is_active %}
+                        <span class="px-2.5 py-1 bg-green-500/10 text-green-400 text-xs font-bold rounded-md border border-green-500/20">Aktiv</span>
+                        {% else %}
+                        <span class="px-2.5 py-1 bg-red-500/10 text-red-400 text-xs font-bold rounded-md border border-red-500/20">Ausgeblendet</span>
+                        {% endif %}
+                    </td>
+                    <td class="p-4 text-right space-x-3">
+                        <a href="{% url 'custom_admin_edit' item.pk %}" class="text-slate-300 hover:text-brand-orange font-bold transition">Bearbeiten</a>
+                        <a href="{% url 'custom_admin_delete' item.pk %}" class="text-red-400 hover:text-red-300 font-bold transition">Löschen</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="p-8 text-center text-brand-muted">Keine Arbeiten gefunden. Füge die erste Arbeit hinzu.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'landing/includes/base.html' %}
+{% block title %}Udalenie | CARZONA{% endblock %}
+
+{% block content %}
+<main class="min-h-screen flex items-center justify-center pt-24 pb-12">
+    <div class="w-full max-w-md p-8 bg-brand-card border border-brand-border rounded-2xl text-center">
+        <h1 class="text-xl font-black uppercase mb-4 text-red-400">Udalenie zapisii</h1>
+        <p class="text-slate-300 text-sm mb-6">Vy uvereny, chto khotite udalit "{{ item.title }}"?</p>
+        
+        <form method="POST" class="flex justify-center gap-4">
+            {% csrf_token %}
+            <button type="submit" class="px-6 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-500 transition">
+                Da, udalit
+            </button>
+            <a href="{% url 'custom_admin_dashboard' %}" class="px-6 py-3 border border-brand-border text-slate-300 font-bold rounded-xl hover:border-brand-orange transition">
+                Otmena
+            </a>
+        </form>
+    </div>
+</main>
+{% endblock %}

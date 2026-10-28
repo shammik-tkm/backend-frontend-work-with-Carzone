@@ -1,0 +1,754 @@
+{% extends 'landing/includes/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <!-- HERO -->
+    <section id="start" class="hero-bg-overlay relative min-h-[640px] sm:min-h-[700px] lg:min-h-[720px] flex items-center pt-24 sm:pt-28 pb-12 sm:pb-16 overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Левая колонка: Текст и переключатель -->
+                <div class="lg:col-span-7 max-w-3xl">
+                    <p class="text-brand-orange font-extrabold uppercase tracking-[.18em] sm:tracking-[.22em] text-[11px] sm:text-xs md:text-sm mb-4 sm:mb-5">
+                        Smart Repair · Lackierung · Neuss
+                    </p>
+                    <h1 class="text-[2rem] leading-[1.1] xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black italic uppercase tracking-tight">
+                        Der Kratzer
+                        <span class="block text-brand-orange mt-1 sm:mt-2">verschwindet.</span>
+                        Der Farbton
+                        <span class="block text-brand-orange mt-1 sm:mt-2">bleibt.</span>
+                    </h1>
+                    <p class="text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed mt-5 sm:mt-6 max-w-2xl">
+                        Unfallreparatur, Smart Repair, Lackierung und Politur.<br>
+                        Schicken Sie uns ein Foto vom Schaden und Sie erhalten<br>
+                        einen verbindlichen Festpreis.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-3 mt-7 sm:mt-8">
+                        <a href="https://wa.me/491729039100?text=Hallo%20CARZONA%2C%20ich%20m%C3%B6chte%20Fotos%20meines%20Fahrzeugschadens%20senden."
+                            target="_blank" rel="noopener noreferrer"
+                            class="btn-orange-glow rounded-xl px-5 sm:px-6 py-3.5 sm:py-4 font-extrabold flex justify-center items-center gap-2.5 text-sm sm:text-base">
+                            <i class="fas fa-camera"></i>
+                            Foto senden & Einschätzung erhalten
+                        </a>
+                        <a href="#leistungen"
+                            class="rounded-xl px-5 sm:px-6 py-3.5 sm:py-4 border border-slate-500 bg-black/30 font-bold text-center hover:border-brand-orange transition text-sm sm:text-base">
+                            Unsere Leistungen
+                        </a>
+                    </div>
+
+                    <!-- Color picker -->
+                    <div class="mt-8 sm:mt-9 p-4 sm:p-5 rounded-2xl max-w-xl bg-black/45 border border-white/10 backdrop-blur-sm">
+                        <div class="flex flex-col gap-4">
+                            <div>
+                                <strong id="active-color-name" class="block text-base sm:text-lg">Signalrot</strong>
+                                <span class="text-xs sm:text-sm text-slate-300">Beispiel-Farbtöne – wir prüfen den passenden Herstellercode.</span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2.5 sm:gap-3" aria-label="Beispiel-Farbton auswählen">
+                                <button class="swatch active" style="background:#e60000" data-color="red" data-name="Signalrot" data-hex="#e60000" aria-label="Signalrot auswählen" aria-pressed="true"></button>
+                                <button class="swatch" style="background:#0044ff" data-color="blue" data-name="Enzianblau" data-hex="#0044ff" aria-label="Enzianblau auswählen" aria-pressed="false"></button>
+                                <button class="swatch" style="background:#fff" data-color="white" data-name="Gletscherweiß" data-hex="#ffffff" aria-label="Gletscherweiß auswählen" aria-pressed="false"></button>
+                                <button class="swatch" style="background:#111;border-color:#aaa" data-color="black" data-name="Tiefschwarz" data-hex="#111111" aria-label="Tiefschwarz auswählen" aria-pressed="false"></button>
+                                <button class="swatch" style="background:#d4af37" data-color="gold" data-name="Champagner" data-hex="#d4af37" aria-label="Champagner auswählen" aria-pressed="false"></button>
+                                <button class="swatch" style="background:#008751" data-color="green" data-name="Smaragdgrün" data-hex="#008751" aria-label="Smaragdgrün auswählen" aria-pressed="false"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- Desna kolona: Vizualizator automobila -->
+                <div class="lg:col-span-5 relative w-full flex items-center justify-center">
+                    <div class="car-preview-wrapper shadow-2xl border border-white/10">
+                        <img id="car-red" src="{% static 'images/change_color/bmw_red.jpg' %}" alt="BMW Signalrot" class="car-image active" />
+                        <img id="car-blue" src="{% static 'images/change_color/bmw_blue.jpg' %}" alt="BMW Enzianblau" class="car-image" />
+                        <img id="car-white" src="{% static 'images/change_color/bmw_white.jpg' %}" alt="BMW Gletscherweiß" class="car-image" />
+                        <img id="car-black" src="{% static 'images/change_color/bmw_black.jpg' %}" alt="BMW Tiefschwarz" class="car-image" />
+                        <img id="car-gold" src="{% static 'images/change_color/bmw_gold.png' %}" alt="BMW Champagner" class="car-image" />
+                        <img id="car-green" src="{% static 'images/change_color/bmw_green.png' %}" alt="BMW Smaragdgrün" class="car-image" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span>Unfallreparatur</span><span>Smart Repair</span><span>Lackierung</span><span>Spot Repair</span>
+            <span>Politur</span><span>Folie entfernen</span><span>Scheinwerfer-Aufbereitung</span><span>Leasingrückgabe-Check</span>
+            <span>Unfallreparatur</span><span>Smart Repair</span><span>Lackierung</span><span>Spot Repair</span>
+            <span>Politur</span><span>Folie entfernen</span><span>Scheinwerfer-Aufbereitung</span><span>Leasingrückgabe-Check</span>
+        </div>
+    </div>
+
+    <!-- TRUST -->
+    <section class="py-10 sm:py-14 bg-[#08090c] border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="trust-item p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border text-center">
+                <i class="fas fa-camera text-brand-orange text-xl sm:text-2xl mb-2 sm:mb-3"></i>
+                <p class="font-black uppercase text-xs sm:text-sm">Foto-Einschätzung</p>
+                <p class="text-brand-muted text-[11px] sm:text-xs mt-1">per WhatsApp</p>
+            </div>
+            <div class="trust-item p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border text-center">
+                <i class="fas fa-handshake text-brand-orange text-xl sm:text-2xl mb-2 sm:mb-3"></i>
+                <p class="font-black uppercase text-xs sm:text-sm">Preis vorab</p>
+                <p class="text-brand-muted text-[11px] sm:text-xs mt-1">nach Prüfung bestätigt</p>
+            </div>
+            <div class="trust-item p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border text-center">
+                <i class="fas fa-palette text-brand-orange text-xl sm:text-2xl mb-2 sm:mb-3"></i>
+                <p class="font-black uppercase text-xs sm:text-sm">Passender Farbton</p>
+                <p class="text-brand-muted text-[11px] sm:text-xs mt-1">nach Herstellercode</p>
+            </div>
+            <div class="trust-item p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border text-center">
+                <i class="fas fa-location-dot text-brand-orange text-xl sm:text-2xl mb-2 sm:mb-3"></i>
+                <p class="font-black uppercase text-xs sm:text-sm">Neuss</p>
+                <p class="text-brand-muted text-[11px] sm:text-xs mt-1">Mo. – Sa. 11 – 17 Uhr</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEISTUNGEN -->
+    <section id="leistungen" class="py-14 sm:py-20 bg-white text-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 sm:mb-12">
+                <p class="text-brand-orange font-extrabold uppercase tracking-widest text-xs mb-3">Was wir machen</p>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black italic uppercase tracking-tight leading-tight">
+                    Lackarbeiten in ganzer<br class="hidden sm:block"> Bandbreite
+                </h2>
+                <p class="text-slate-600 mt-4 max-w-3xl text-sm sm:text-base">
+
+                    Vom Unfallschaden bis zum letzten Feinschliff. Wir sagen Ihnen ehrlich, welche<br>
+                    Methode für Ihren Schaden wirtschaftlich sinnvoll ist, und setzen sie sauber um.<br>
+
+                </p>
+            </div>
+
+            <div class="divide-y divide-slate-200 border-y border-slate-200">
+                <article class="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                    <i class="fas fa-car-burst text-brand-orange text-2xl sm:text-3xl w-9 sm:w-10"></i>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-black italic uppercase sm:w-56 md:w-64 shrink-0">Unfallreparatur</h3>
+
+                    <p class="text-slate-600 flex-1 text-sm sm:text-base">Lackschäden nach einem Unfall, fachgerecht<br>
+                                                                            instand gesetzt.
+                    </p>
+
+                    <span class="text-[10px] sm:text-xs font-black uppercase text-brand-orange border-2 border-brand-orange rounded-full px-3 sm:px-4 py-1.5 sm:py-2 self-start">Kernkompetenz</span>
+                </article>
+                <article class="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                    <i class="fas fa-spray-can-sparkles text-brand-orange text-2xl sm:text-3xl w-9 sm:w-10"></i>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-black italic uppercase sm:w-56 md:w-64 shrink-0">Lackierung</h3>
+
+                    <p class="text-slate-600 flex-1 text-sm sm:text-base">Lackierung im Farbton Ihres Herstellercodes,
+mit unsichtbaren Übergängen.</p>
+
+                </article>
+                <article class="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                    <i class="fas fa-wand-magic-sparkles text-brand-orange text-2xl sm:text-3xl w-9 sm:w-10"></i>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-black italic uppercase sm:w-56 md:w-64 shrink-0">Smart Repair</h3>
+
+                    <p class="text-slate-600 flex-1 text-sm sm:text-base">Kratzer, Schrammen, Parkschäden: Es wird nur die Schadstelle
+repariert, nicht das ganze Bauteil neu lackiert.</p>
+
+                </article>
+                <article class="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                    <i class="fas fa-bullseye text-brand-orange text-2xl sm:text-3xl w-9 sm:w-10"></i>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-black italic uppercase sm:w-56 md:w-64 shrink-0">Spot Repair</h3>
+                    <p class="text-slate-600 flex-1 text-sm sm:text-base">Kleinste Flächen punktgenau lackiert. Ideal bei Steinschlägen
+und oberflächlichen Lackschäden.</p>
+
+                </article>
+                <article class="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                    <i class="fas fa-car-side text-brand-orange text-2xl sm:text-3xl w-9 sm:w-10"></i>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-black italic uppercase sm:w-56 md:w-64 shrink-0">Folie entfernen</h3>
+
+                    <p class="text-slate-600 flex-1 text-sm sm:text-base">Entfolierung mit Nachpolitur, um alle Klebereste
+zu entfernen.</p>
+
+                </article>
+                <article class="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                    <i class="fas fa-clipboard-check text-brand-orange text-2xl sm:text-3xl w-9 sm:w-10"></i>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-black italic uppercase sm:w-56 md:w-64 shrink-0">Leasingrückgabe-Check</h3>
+
+                    <p class="text-slate-600 flex-1 text-sm sm:text-base">Kleinschäden vor der Rückgabe beheben. Das ist meist
+deutlich günstiger als die Nachberechnung des Leasinggebers.</p>
+                </article>
+                <article class="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                    <i class="fas fa-tree text-brand-orange text-2xl sm:text-3xl w-9 sm:w-10"></i>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-black italic uppercase sm:w-56 md:w-64 shrink-0">Holz lackierung</h3>
+                    <p class="text-slate-600 flex-1 text-sm sm:text-base">Lackierung von Holzoberflächen, z. B. Innenraumleisten,
+Dekorelementen oder Möbelteilen.</p>
+                </article>
+                <article class="py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                    <i class="fas fa-lightbulb text-brand-orange text-2xl sm:text-3xl w-9 sm:w-10"></i>
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-black italic uppercase sm:w-56 md:w-64 shrink-0">Scheinwerfer Aufbereitung</h3>
+                    <p class="text-slate-600 flex-1 text-sm sm:text-base">Vergilbte und matte Scheinwerfer aufbereiten
+für klare Sicht und ein gepflegtes Erscheinungsbild.</p>
+
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- VORHER / NACHHER -->
+    <section id="vorher-nachher" class="py-14 sm:py-20 bg-[#08090c] border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 sm:mb-10">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic uppercase">
+                    Ziehen Sie den Regler <br> <br class="hidden xs:block">
+
+                    und sehen Sie den <br>
+                    <span class="text-brand-orange">Unterschied</span>
+                </h2>
+                <p class="text-brand-muted mt-3 max-w-3xl text-sm sm:text-base">
+                    Links der Schaden, rechts das Ergebnis. Die Farbe folgt Ihrer Auswahl oben, so wie ein Farbton nach Code gemischt wird.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+                <div class="lg:col-span-7 bg-brand-card border border-brand-border rounded-2xl p-2.5 sm:p-3 md:p-5">
+                    <div id="sliderBox"
+                            class="relative h-[220px] xs:h-[260px] sm:h-[340px] md:h-[400px] overflow-hidden rounded-xl select-none touch-none cursor-ew-resize"
+                            role="group" aria-label="Vorher-Nachher-Vergleich">
+
+                        <img id="afterImg" src="{% static 'images/no_number_car/MAZDA3 After no number.jpg' %}" alt="Fahrzeug nach der Aufbereitung"
+                                class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-3 right-3 sm:top-4 sm:right-4 bg-brand-orange px-2.5 py-1 sm:px-3 sm:py-1.5 rounded text-[10px] sm:text-xs font-black uppercase">
+                            Nachher
+                        </span>
+                        <div id="beforeLayer" class="absolute inset-y-0 left-0 w-1/2 overflow-hidden border-r-2 border-brand-orange">
+                            <img id="beforeImg" src="{% static 'images/no_number_car/MAZDA 3 Before no number.jpg' %}" alt="Fahrzeug vor der Aufbereitung"
+                                    class="absolute inset-0 h-full object-cover max-w-none">
+                            <div class="absolute inset-0 bg-black/20 pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 sm:top-4 sm:left-4 bg-black/80 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded text-[10px] sm:text-xs font-black uppercase">
+                                Vorher
+
+                            </span>
+                        </div>
+                        <div id="dragDivider"
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-orange border-2 border-white shadow-lg flex items-center justify-center pointer-events-none z-10">
+                            <i class="fas fa-arrows-left-right text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 space-y-3 sm:space-y-4">
+                    <div class="p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border flex gap-3 sm:gap-4">
+                        <i class="fas fa-car-side text-brand-orange text-xl sm:text-2xl mt-0.5"></i>
+                        <div>
+                            <h3 class="font-black uppercase text-sm sm:text-base">Streifschaden am Seitenteil</h3>
+
+                            <p class="text-brand-muted text-xs sm:text-sm mt-1">Im Originalfarbton neu lackiert
+und auf Glanz gebracht.</p>
+
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border flex gap-3 sm:gap-4">
+                        <i class="fas fa-car-rear text-brand-orange text-xl sm:text-2xl mt-0.5"></i>
+                        <div>
+                            <h3 class="font-black uppercase text-sm sm:text-base">Delle an der Heckklappe</h3>
+
+                            <p class="text-brand-muted text-xs sm:text-sm mt-1">Delle und Kratzer entfernt.</p>
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border flex gap-3 sm:gap-4">
+                        <i class="fas fa-spray-can text-brand-orange text-xl sm:text-2xl mt-0.5"></i>
+                        <div>
+                            <h3 class="font-black uppercase text-sm sm:text-base">Kratzer am Stoßfänger</h3>
+
+                            <p class="text-brand-muted text-xs sm:text-sm mt-1">Oberflächliche Kratzer entfernt und
+passend lackiert.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LACKSCHICHTEN -->
+    <section class="py-14 sm:py-20 bg-[#0b0c10] border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 sm:gap-10 items-center">
+            <div>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic uppercase">
+
+                    Nach dem Unfall
+                    zählt nur ein
+                    Maßstab: das
+                    <span class="text-brand-orange">Original.</span>
+                </h2>
+                <p class="text-brand-muted mt-4 sm:mt-5 leading-relaxed text-sm sm:text-base">
+                    Jeder Schritt läuft bei uns prorfessionell ab. So sehen<br>
+                    hinterher nicht, wo der Schaden war.
+                </p>
+            </div>
+            <div class="space-y-2.5 sm:space-y-3">
+                <div class="p-3.5 sm:p-4 rounded-xl bg-slate-100 text-slate-900 flex justify-between items-center">
+                    <div>
+                        <strong class="uppercase text-sm sm:text-base">Klarlack</strong>
+
+                        <p class="text-[11px] sm:text-xs text-slate-600">Glanz und UV-Schutz</p>
+                    </div>
+                    
+                </div>
+                <div id="stackBaseColor" class="p-3.5 sm:p-4 rounded-xl text-white flex justify-between items-center" style="background:linear-gradient(90deg,#e60000,#6b0000)">
+                    <div>
+                        <strong class="uppercase text-sm sm:text-base">Basislack</strong>
+                        <p class="text-[11px] sm:text-xs text-white/80">Brillanter Farbton nach Code</p>
+                    </div>
+                </div>
+                <div class="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-slate-500 to-slate-700 flex justify-between items-center">
+                    <div>
+                        <strong class="uppercase text-sm sm:text-base">Füller</strong>
+                        <p class="text-[11px] sm:text-xs text-slate-200">Ebenheit & Haftung</p>
+                    </div>
+                    
+                </div>
+                <div class="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-amber-800 to-amber-950 flex justify-between items-center">
+                    <div>
+                        <strong class="uppercase text-sm sm:text-base">Grundierung</strong>
+                        <p class="text-[11px] sm:text-xs text-amber-100">Starker Halt, Korrosionsschutz</p>
+                    </div>
+                    
+                </div>
+                <div class="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-slate-700 to-slate-900 border border-slate-600 flex justify-between items-center">
+                    <div>
+                        <strong class="uppercase text-sm sm:text-base">Blech</strong>
+                        <p class="text-[11px] sm:text-xs text-slate-300">Robust und formstabil</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABLAUF -->
+    <section id="ablauf" class="py-14 sm:py-20 bg-[#08090c] border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic uppercase">
+
+                    Vier Schritte zum
+                    <span class="text-brand-orange">verbindlichen</span>Festpreis
+
+                </h2>
+                <p class="text-brand-muted mt-3 sm:mt-4 text-sm sm:text-base">Transparent, unkompliziert und nach vorheriger Absprache.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                <article class="p-5 sm:p-6 rounded-2xl bg-brand-card border border-brand-border">
+                    <span class="text-brand-orange font-black text-xl sm:text-2xl">01</span>
+                    <i class="fas fa-camera block text-brand-orange text-2xl sm:text-3xl my-4 sm:my-5"></i>
+                    <h3 class="font-black uppercase text-base sm:text-lg">Foto senden</h3>
+                    <p class="text-brand-muted text-xs sm:text-sm mt-2">Schicken Sie uns Fotos und eine kurze Beschreibung per WhatsApp.</p>
+                </article>
+                <article class="p-5 sm:p-6 rounded-2xl bg-brand-card border border-brand-border">
+                    <span class="text-brand-orange font-black text-xl sm:text-2xl">02</span>
+                    <i class="fas fa-clipboard-check block text-brand-orange text-2xl sm:text-3xl my-4 sm:my-5"></i>
+                    <h3 class="font-black uppercase text-base sm:text-lg">Einschätzung</h3>
+                    <p class="text-brand-muted text-xs sm:text-sm mt-2">Wir besprechen den möglichen Aufwand. Fotos erlauben zunächst nur eine vorläufige Einschätzung.</p>
+                </article>
+                <article class="p-5 sm:p-6 rounded-2xl bg-brand-card border border-brand-border">
+                    <span class="text-brand-orange font-black text-xl sm:text-2xl">03</span>
+                    <i class="fas fa-calendar-check block text-brand-orange text-2xl sm:text-3xl my-4 sm:my-5"></i>
+                    <h3 class="font-black uppercase text-base sm:text-lg">Termin vereinbaren</h3>
+                    <p class="text-brand-muted text-xs sm:text-sm mt-2">Wir stimmen den Termin und den bestätigten Preis mit Ihnen ab.</p>
+                </article>
+                <article class="p-5 sm:p-6 rounded-2xl bg-brand-card border border-brand-border">
+                    <span class="text-brand-orange font-black text-xl sm:text-2xl">04</span>
+                    <i class="fas fa-car block text-brand-orange text-2xl sm:text-3xl my-4 sm:my-5"></i>
+                    <h3 class="font-black uppercase text-base sm:text-lg">Fahrzeug abholen</h3>
+                    <p class="text-brand-muted text-xs sm:text-sm mt-2">Nach Abschluss der vereinbarten Arbeiten holen Sie Ihr Fahrzeug wieder ab.</p>
+                </article>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8 sm:mt-10">
+                <a href="https://wa.me/491729039100" target="_blank" rel="noopener noreferrer"
+                    class="btn-orange-glow rounded-xl px-6 sm:px-7 py-3.5 sm:py-4 font-extrabold text-center text-sm sm:text-base">
+                    Jetzt per WhatsApp anfragen
+                </a>
+                <a href="tel:+491729039100"
+                    class="rounded-xl px-6 sm:px-7 py-3.5 sm:py-4 border border-brand-border bg-brand-card font-bold text-center hover:border-brand-orange text-sm sm:text-base">
+                    <i class="fas fa-phone text-brand-orange mr-2"></i>0172 903 9100
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HANDWERK -->
+    <section class="py-14 sm:py-20 bg-[#0b0c10] border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic uppercase mb-8 sm:mb-10">
+                Handwerk, das man <span class="text-brand-orange">sehen kann</span>
+            </h2>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
+                <article class="p-5 sm:p-7 rounded-2xl bg-brand-card border border-brand-border">
+                    <i class="fas fa-coins text-brand-orange text-2xl sm:text-3xl mb-4 sm:mb-5"></i>
+                    <h3 class="text-lg sm:text-xl font-black uppercase mb-2 sm:mb-3">Klare Preisabsprache</h3>
+                    <p class="text-brand-muted leading-relaxed text-sm">Vor Beginn besprechen wir den vereinbarten Leistungsumfang und den Preis.</p>
+                </article>
+                <article class="p-5 sm:p-7 rounded-2xl bg-brand-card border border-brand-border">
+                    <i class="fas fa-sparkles text-brand-orange text-2xl sm:text-3xl mb-4 sm:mb-5"></i>
+                    <h3 class="text-lg sm:text-xl font-black uppercase mb-2 sm:mb-3">Sorgfältige Ausführung</h3>
+                    <p class="text-brand-muted leading-relaxed text-sm">Wir legen Wert auf eine saubere Ausführung und eine nachvollziehbare Abstimmung.</p>
+                </article>
+                <article class="p-5 sm:p-7 rounded-2xl bg-brand-card border border-brand-border sm:col-span-2 md:col-span-1">
+                    <i class="fas fa-comments text-brand-orange text-2xl sm:text-3xl mb-4 sm:mb-5"></i>
+                    <h3 class="text-lg sm:text-xl font-black uppercase mb-2 sm:mb-3">Ehrliche Beratung</h3>
+                    <p class="text-brand-muted leading-relaxed text-sm">Wir besprechen passende Reparaturmöglichkeiten für den konkreten Schaden.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-14 sm:py-20 bg-[#08090c] border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-5 gap-8 sm:gap-10">
+            <div class="lg:col-span-2">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic uppercase">
+                    Fragen und <span class="text-brand-orange">Antworten</span>
+                </h2>
+                <p class="text-brand-muted mt-4 sm:mt-5 text-sm sm:text-base">
+                    Sie finden uns in Neuss. Kontaktieren Sie uns, um Ihren Schaden und die nächsten Schritte zu besprechen.
+                </p>
+                <div class="mt-6 sm:mt-7 p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border flex items-center">
+                    <i class="fas fa-location-dot text-brand-orange mr-3"></i>
+                    <span class="font-bold text-sm sm:text-base">Scharnhorststr. 2, 41460 Neuss</span>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 space-y-3">
+                <article class="faq-item rounded-2xl bg-brand-card border border-brand-border overflow-hidden">
+                    <button class="faq-question w-full p-4 sm:p-5 text-left font-bold flex justify-between items-center gap-3 sm:gap-4 text-sm sm:text-base" aria-expanded="false">
+                        <span>Was kostet Smart Repair oder eine Lackierung?</span>
+                        <i class="fas fa-plus text-brand-orange shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-4 sm:px-5 pb-4 sm:pb-5 text-brand-muted leading-relaxed text-sm" hidden>
+                        Das hängt vom Schaden ab. Fotos helfen bei einer ersten Einschätzung; ein verbindlicher Preis kann nach Prüfung des Fahrzeugs und des Arbeitsumfangs bestätigt werden.
+                    </div>
+                </article>
+                <article class="faq-item rounded-2xl bg-brand-card border border-brand-border overflow-hidden">
+                    <button class="faq-question w-full p-4 sm:p-5 text-left font-bold flex justify-between items-center gap-3 sm:gap-4 text-sm sm:text-base" aria-expanded="false">
+                        <span>Wie lange dauert eine Reparatur?</span>
+                        <i class="fas fa-plus text-brand-orange shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-4 sm:px-5 pb-4 sm:pb-5 text-brand-muted leading-relaxed text-sm" hidden>
+                        Die Dauer hängt von Art und Umfang des Schadens sowie der Verfügbarkeit von Material ab. Den voraussichtlichen Termin besprechen wir vor Beginn.
+                    </div>
+                </article>
+                <article class="faq-item rounded-2xl bg-brand-card border border-brand-border overflow-hidden">
+                    <button class="faq-question w-full p-4 sm:p-5 text-left font-bold flex justify-between items-center gap-3 sm:gap-4 text-sm sm:text-base" aria-expanded="false">
+                        <span>Muss ich für eine Einschätzung vorbeikommen?</span>
+                        <i class="fas fa-plus text-brand-orange shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-4 sm:px-5 pb-4 sm:pb-5 text-brand-muted leading-relaxed text-sm" hidden>
+                        Sie können zunächst Fotos per WhatsApp senden. Bei Bedarf muss das Fahrzeug anschließend vor Ort geprüft werden.
+                    </div>
+                </article>
+                <article class="faq-item rounded-2xl bg-brand-card border border-brand-border overflow-hidden">
+                    <button class="faq-question w-full p-4 sm:p-5 text-left font-bold flex justify-between items-center gap-3 sm:gap-4 text-sm sm:text-base" aria-expanded="false">
+                        <span>Was ist der Unterschied zwischen Smart Repair und Lackierung?</span>
+                        <i class="fas fa-plus text-brand-orange shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-4 sm:px-5 pb-4 sm:pb-5 text-brand-muted leading-relaxed text-sm" hidden>
+                        Smart Repair ist für bestimmte kleinere Schäden geeignet. Ob eine punktuelle Reparatur oder eine Lackierung eines größeren Bereichs sinnvoll ist, hängt vom konkreten Schadensbild ab.
+                    </div>
+                </article>
+                <article class="faq-item rounded-2xl bg-brand-card border border-brand-border overflow-hidden">
+                    <button class="faq-question w-full p-4 sm:p-5 text-left font-bold flex justify-between items-center gap-3 sm:gap-4 text-sm sm:text-base" aria-expanded="false">
+                        <span>Reparieren Sie Schäden vor der Leasingrückgabe?</span>
+                        <i class="fas fa-plus text-brand-orange shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-4 sm:px-5 pb-4 sm:pb-5 text-brand-muted leading-relaxed text-sm" hidden>
+                        Wir können den Zustand prüfen und mit Ihnen besprechen, welche Reparaturen vor der Rückgabe sinnvoll sein könnten.
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE (Подгружается из админ-панели) -->
+    <section id="galerie" class="py-14 sm:py-20 bg-[#0b0c10] border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Заголовок -->
+            <div class="mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div>
+                    <p class="text-brand-orange font-extrabold uppercase tracking-widest text-xs mb-3">Unsere Arbeiten</p>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black italic uppercase tracking-tight text-white">
+                        Galerie & <span class="text-brand-orange">Projekte</span>
+                    </h2>
+                    <p class="text-brand-muted mt-3 max-w-2xl text-sm sm:text-base">
+                        Vorher-Nachher Vergleich: Präzisionslackierungen, Smart Repair und professionelle Aufbereitungen.
+                    </p>
+                </div>
+                
+                <!-- Ссылка на полную галерею -->
+                <div class="hidden sm:flex items-center gap-2 text-brand-muted text-xs font-semibold uppercase tracking-wider">
+                    <a href="{% url 'gallery' %}" class="hover:text-brand-orange transition">Wischen zum Erkunden</a>
+                    <svg class="w-4 h-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Карусель / Скролл в одну линию -->
+            <div class="flex overflow-x-auto gap-4 sm:gap-6 pb-6 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-brand-orange scrollbar-track-brand-card">
+                
+                {% for item in gallery_items %}
+                <!-- Карточка из базы данных -->
+                <div class="flex-none w-[85vw] sm:w-[380px] md:w-[420px] snap-start bg-brand-card rounded-2xl border border-brand-border overflow-hidden group">
+                    <div class="relative aspect-[4/3] w-full overflow-hidden select-none before-after-container">
+                        
+                        <!-- Фото После (Background/After) -->
+                        <img src="{{ item.image_after.url }}" alt="{{ item.title }} After" class="absolute inset-0 w-full h-full object-cover" />
+                        <span class="absolute top-3 right-3 z-10 bg-black/60 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-sm">NACHHER</span>
+
+                        <!-- Фото До (Foreground/Before) -->
+                        <div class="before-image absolute inset-y-0 left-0 overflow-hidden w-1/2 z-10">
+                            <img src="{{ item.image_before.url }}" alt="{{ item.title }} Before" class="absolute inset-0 w-full h-full object-cover max-w-none w-full-container" />
+                            <span class="absolute top-3 left-3 z-10 bg-brand-orange/90 text-black text-[10px] font-extrabold px-2 py-1 rounded">VORHER</span>
+                        </div>
+
+                        <!-- Слайдер-разделитель -->
+                        <input type="range" min="0" max="100" value="50" class="slider-input absolute inset-0 w-full h-full opacity-0 z-30 cursor-ew-resize" oninput="moveSlider(this)" />
+                        <div class="slider-line absolute top-0 bottom-0 left-1/2 w-0.5 bg-brand-orange z-20 pointer-events-none -translate-x-1/2">
+                            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 bg-brand-orange rounded-full flex items-center justify-center shadow-lg text-black font-bold text-xs">
+                                &#10094;&#10095;
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 bg-[#0b0c10]">
+                        <span class="text-brand-orange text-xs font-black uppercase tracking-wider block mb-1">{{ item.badge_text }}</span>
+                        <h3 class="font-bold text-white text-base">{{ item.title }}</h3>
+                    </div>
+                </div>
+                {% empty %}
+                <!-- Если в админке пока нет объектов -->
+                <div class="col-span-full py-8 text-center text-brand-muted text-sm">
+                    Im Administrationsbereich wurden noch keine Arbeiten hinzugefügt.
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <!-- KUNDENBEWERTUNGEN (OTZYWY) -->
+    <section id="bewertungen" class="py-14 sm:py-20 bg-[#08090c] border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-6">
+                <div>
+                    <p class="text-brand-orange font-extrabold uppercase tracking-widest text-xs mb-3">Erfahrungen</p>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black italic uppercase tracking-tight">
+                        Was unsere <span class="text-brand-orange">Kunden sagen</span>
+                    </h2>
+                </div>
+
+                <!-- Google Rating Badge -->
+                <div class="p-4 rounded-2xl bg-brand-card border border-brand-border flex items-center gap-4 shrink-0">
+                    <div class="text-2xl font-black text-white">4.9 / 5.0</div>
+                    <div>
+                        <div class="text-brand-orange text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-xs text-brand-muted">Basierend auf Google-Bewertungen</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Карточки отзывов -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+                
+                <article class="p-6 sm:p-7 rounded-2xl bg-brand-card border border-brand-border flex flex-col justify-between">
+                    <div>
+                        <div class="text-brand-orange text-sm mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 italic">
+                            "Ich hatte einen tiefen Kratzer an der Stoßstange. Nach der Reparatur sieht der Wagen wie neu aus — man erkennt absolut keinen Farbunterschied. Schnelle und faire Abwicklung per WhatsApp!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-orange/20 border border-brand-orange flex items-center justify-center font-bold text-brand-orange">
+                            M
+                        </div>
+                        <div>
+                            <strong class="block text-sm font-bold text-white">Michael S.</strong>
+                            <span class="text-xs text-brand-muted">Neuss · Smart Repair</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="p-6 sm:p-7 rounded-2xl bg-brand-card border border-brand-border flex flex-col justify-between">
+                    <div>
+                        <div class="text-brand-orange text-sm mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 italic">
+                            "Vor der Leasingrückgabe habe ich hier zwei kleine Dellen und Schrammen beheben lassen. Hat mir bei der Rückgabe mehrere hundert Euro gespart. Absolut empfehlenswert!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-orange/20 border border-brand-orange flex items-center justify-center font-bold text-brand-orange">
+                            K
+                        </div>
+                        <div>
+                            <strong class="block text-sm font-bold text-white">Karsten B.</strong>
+                            <span class="text-xs text-brand-muted">Düsseldorf · Leasing-Check</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="p-6 sm:p-7 rounded-2xl bg-brand-card border border-brand-border flex flex-col justify-between">
+                    <div>
+                        <div class="text-brand-orange text-sm mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 italic">
+                            "Sehr freundliches Team, professionelle Beratung und ein absolut verbindlicher Preis ohne versteckte Kosten. Wer eine ehrliche Werkstatt sucht, ist hier genau richtig."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-white/5 pt-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-orange/20 border border-brand-orange flex items-center justify-center font-bold text-brand-orange">
+                            A
+                        </div>
+                        <div>
+                            <strong class="block text-sm font-bold text-white">Andreas M.</strong>
+                            <span class="text-xs text-brand-muted">Neuss · Lackierung</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="py-14 sm:py-20 bg-[#08090c]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 sm:mb-10">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic uppercase">
+                    Kommen Sie vorbei oder <span class="text-brand-orange">schreiben Sie uns</span>
+                </h2>
+                <p class="text-brand-muted mt-3 sm:mt-4 text-sm sm:text-base">
+                    Bitte beachten Sie: Fotos werden auf den Server hochgeladen und Sie werden direkt zu WhatsApp weitergeleitet.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-5 sm:gap-7">
+                <div class="lg:col-span-7 bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 md:p-8">
+                    <h3 class="text-xl sm:text-2xl font-black italic uppercase mb-5 sm:mb-6">Anfrage vorbereiten</h3>
+                    
+                    <form id="contactForm" class="space-y-4" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="block text-xs font-bold text-slate-300 uppercase mb-2">Name *</label>
+                                <input id="name" name="name" required autocomplete="name"
+                                    class="w-full px-4 py-3 bg-[#08090c] border border-brand-border rounded-xl focus:outline-none focus:border-brand-orange text-sm sm:text-base text-white"
+                                    placeholder="Ihr Name">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-xs font-bold text-slate-300 uppercase mb-2">Telefon</label>
+                                <input id="phone" name="phone" type="tel" autocomplete="tel"
+                                    class="w-full px-4 py-3 bg-[#08090c] border border-brand-border rounded-xl focus:outline-none focus:border-brand-orange text-sm sm:text-base text-white"
+                                    placeholder="Ihre Telefonnummer">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-xs font-bold text-slate-300 uppercase mb-2">E-Mail *</label>
+                            <input id="email" name="email" type="email" required autocomplete="email"
+                                class="w-full px-4 py-3 bg-[#08090c] border border-brand-border rounded-xl focus:outline-none focus:border-brand-orange text-sm sm:text-base text-white"
+                                placeholder="Ihre E-Mail-Adresse">
+                        </div>
+                        <div>
+                            <label for="service" class="block text-xs font-bold text-slate-300 uppercase mb-2">Worum geht es?</label>
+                            <select id="service" name="service"
+                                    class="w-full px-4 py-3 bg-[#08090c] border border-brand-border rounded-xl focus:outline-none focus:border-brand-orange text-sm sm:text-base text-white">
+                                <option>Unfallreparatur</option>
+                                <option>Smart Repair</option>
+                                <option>Spot Repair</option>
+                                <option>Lackierung</option>
+                                <option>Leasingrückgabe-Check</option>
+                                <option>Sonstiges</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-xs font-bold text-slate-300 uppercase mb-2">Ihre Nachricht *</label>
+                            <textarea id="message" name="message" required rows="4"
+                                    class="w-full px-4 py-3 bg-[#08090c] border border-brand-border rounded-xl focus:outline-none focus:border-brand-orange text-sm sm:text-base text-white"
+                                    placeholder="Beschreiben Sie den Schaden ..."></textarea>
+                        </div>
+
+                        <!-- Поле загрузки фотографий -->
+                        <div>
+                            <label for="photos" class="block text-xs font-bold text-slate-300 uppercase mb-2">Fotos vom Schaden (Optional)</label>
+                            <div class="relative border-2 border-dashed border-brand-border hover:border-brand-orange rounded-xl p-4 text-center cursor-pointer transition">
+                                <input type="file" id="photos" name="photos" multiple accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="updateFileName(this)">
+                                <div class="flex flex-col items-center justify-center gap-2">
+                                    <i class="fas fa-camera text-brand-orange text-2xl"></i>
+                                    <span id="file-label" class="text-xs text-brand-muted font-semibold">Klicken Sie hier, um Fotos auszuwählen</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Кнопка отправки -->
+                        <button id="whatsapp-submit-btn" type="submit" 
+                                class="w-full py-3.5 px-6 bg-brand-orange hover:bg-opacity-90 text-white font-bold rounded-xl transition duration-200 flex items-center justify-center gap-2 mt-4">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                            Per WhatsApp anfragen
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Правая колонка с контактами -->
+                <aside class="lg:col-span-5 space-y-3 sm:space-y-4">
+                    <div class="p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border flex gap-3 sm:gap-4">
+                        <i class="fas fa-location-dot text-brand-orange text-lg sm:text-xl mt-0.5"></i>
+                        <div>
+                            <span class="text-xs font-bold text-brand-muted uppercase">Adresse</span>
+                            <p class="font-bold mt-1 text-sm sm:text-base">Scharnhorststr. 2, 41460 Neuss</p>
+                            <a class="text-brand-orange text-xs sm:text-sm underline mt-2 inline-block"
+                            href="https://maps.google.com/?q=Scharnhorststr.+2,+41460+Neuss"
+                            target="_blank" rel="noopener noreferrer">
+                                Route in Google Maps öffnen
+                            </a>
+                        </div>
+                    </div>
+                    <a href="tel:+491729039100" class="p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border flex gap-3 sm:gap-4 hover:border-brand-orange">
+                        <i class="fas fa-phone text-brand-orange text-lg sm:text-xl mt-0.5"></i>
+                        <div>
+                            <span class="text-xs font-bold text-brand-muted uppercase">Telefon und WhatsApp</span>
+                            <p class="font-bold mt-1 text-sm sm:text-base">0172 903 9100</p>
+                        </div>
+                    </a>
+                    <a href="mailto:adbworkteam@gmail.com" class="p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border flex gap-3 sm:gap-4 hover:border-brand-orange">
+                        <i class="fas fa-envelope text-brand-orange text-lg sm:text-xl mt-0.5"></i>
+                        <div>
+                            <span class="text-xs font-bold text-brand-muted uppercase">E-Mail</span>
+                            <p class="font-bold mt-1 break-all text-sm sm:text-base">adbworkteam@gmail.com</p>
+                        </div>
+                    </a>
+                    <div class="p-4 sm:p-5 rounded-2xl bg-brand-card border border-brand-border flex gap-3 sm:gap-4">
+                        <i class="fas fa-clock text-brand-orange text-lg sm:text-xl mt-0.5"></i>
+                        <div>
+                            <span class="text-xs font-bold text-brand-muted uppercase">Öffnungszeiten</span>
+                            <p class="font-bold mt-1 text-sm sm:text-base">Mo. – Sa. 11:00 – 17:00 Uhr</p>
+                            <p class="text-xs text-brand-muted mt-1">Termine bitte vorher vereinbaren.</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

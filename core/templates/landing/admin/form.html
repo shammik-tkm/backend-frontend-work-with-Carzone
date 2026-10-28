@@ -1,0 +1,32 @@
+{% extends 'landing/includes/base.html' %}
+{% block title %}{{ title }} | CARZONA{% endblock %}
+
+{% block content %}
+<main class="pt-28 pb-20 max-w-3xl mx-auto px-4">
+    <div class="bg-brand-card border border-brand-border rounded-2xl p-6 sm:p-8">
+        <h1 class="text-2xl font-black italic uppercase mb-6">{{ title }}</h1>
+
+        <form method="POST" enctype="multipart/form-data" class="space-y-4">
+            {% csrf_token %}
+            {% for field in form %}
+            <div>
+                <label class="block text-xs font-bold text-slate-300 uppercase mb-2">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <p class="text-xs text-red-400 mt-1">{{ field.errors.0 }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div class="flex gap-4 mt-6">
+                <button type="submit" class="px-6 py-3.5 bg-brand-orange text-white font-bold rounded-xl hover:bg-brand-orangeHover transition">
+                    Sokhranit
+                </button>
+                <a href="{% url 'custom_admin_dashboard' %}" class="px-6 py-3.5 border border-brand-border text-slate-300 font-bold rounded-xl hover:border-brand-orange transition">
+                    Otmene
+                </a>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}

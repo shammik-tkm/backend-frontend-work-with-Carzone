@@ -1,7 +1,7 @@
 {% extends 'landing/base.html' %}
 {% load static %}
 
-{% block title %}CARZONA – Vorher / Nachher Galerie | Neuss{% endblock %}
+{% block title %}CARZONA – Vorher-Nachher-Galerie | Neuss{% endblock %}
 
 {% block content %}
 <main class="pt-28 pb-20">
@@ -12,7 +12,7 @@
         </h1>
     </section>
 
-    <!-- DYNAMIC FILTER TABS -->
+    <!-- DYNAMISCHE FILTER -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
         <div class="flex flex-wrap justify-center gap-2 sm:gap-3" id="galleryFilters">
             <button onclick="filterCategory('all', this)" class="filter-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold border border-brand-orange bg-brand-orange text-white transition">
@@ -26,17 +26,17 @@
         </div>
     </section>
 
-    <!-- DYNAMIC GALLERY GRID -->
+    <!-- DYNAMISCHES GALERIE-RASTER -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="galleryGrid">
             {% for item in gallery_items %}
             <div class="gallery-card bg-brand-card rounded-2xl border border-brand-border overflow-hidden transition duration-300 hover:border-brand-orange/50" data-category="{{ item.category.slug }}">
                 <div class="relative aspect-[4/3] w-full overflow-hidden select-none before-after-container">
-                    <img src="{{ item.image_after.url }}" alt="{{ item.title }} Nachher" class="absolute inset-0 w-full h-full object-cover" />
+                    <img src="{{ item.image_after.url }}" alt="{{ item.title }} – Nachher" class="absolute inset-0 w-full h-full object-cover" />
                     <span class="absolute top-3 right-3 z-10 bg-black/70 text-white text-[10px] font-bold px-2.5 py-1 rounded backdrop-blur-sm">NACHHER</span>
 
                     <div class="before-image absolute inset-y-0 left-0 overflow-hidden w-1/2 z-10">
-                        <img src="{{ item.image_before.url }}" alt="{{ item.title }} Vorher" class="absolute inset-0 w-full h-full object-cover max-w-none w-full-container" />
+                        <img src="{{ item.image_before.url }}" alt="{{ item.title }} – Vorher" class="absolute inset-0 w-full h-full object-cover max-w-none w-full-container" />
                         <span class="absolute top-3 left-3 z-10 bg-brand-orange text-white text-[10px] font-black px-2.5 py-1 rounded">VORHER</span>
                     </div>
 
@@ -55,7 +55,7 @@
             </div>
             {% empty %}
             <div class="col-span-full text-center text-brand-muted py-10">
-                Записи в галерее пока отсутствуют.
+                Derzeit sind noch keine Einträge in der Galerie vorhanden.
             </div>
             {% endfor %}
         </div>
